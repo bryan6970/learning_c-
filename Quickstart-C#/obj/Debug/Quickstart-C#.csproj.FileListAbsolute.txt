@@ -1,0 +1,7 @@
+C:\Users\thacu\Coding_projects\Quickstart-C#\Quickstart-C#\bin\Debug\Quickstart-C#.exe.config
+C:\Users\thacu\Coding_projects\Quickstart-C#\Quickstart-C#\bin\Debug\Quickstart-C#.exe
+C:\Users\thacu\Coding_projects\Quickstart-C#\Quickstart-C#\bin\Debug\Quickstart-C#.pdb
+C:\Users\thacu\Coding_projects\Quickstart-C#\Quickstart-C#\obj\Debug\Quickstart-C#.csproj.AssemblyReference.cache
+C:\Users\thacu\Coding_projects\Quickstart-C#\Quickstart-C#\obj\Debug\Quickstart-C#.csproj.CoreCompileInputs.cache
+C:\Users\thacu\Coding_projects\Quickstart-C#\Quickstart-C#\obj\Debug\Quickstart-C#.exe
+C:\Users\thacu\Coding_projects\Quickstart-C#\Quickstart-C#\obj\Debug\Quickstart-C#.pdb
