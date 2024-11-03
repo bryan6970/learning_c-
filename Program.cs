@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
+using System.Collections.Generic; // for lists, dict
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
+
 
 // why does the font here suck
 namespace Quickstart_C_
 {
-     // what does internal mean?
+    // what does internal mean?
     internal class Program
     {
 
         // temp is just a container for my old code
-        void temp()
+        static void temp()
         {
             Console.WriteLine("hello world"); // the `Console` function is from system
 
@@ -116,8 +112,71 @@ namespace Quickstart_C_
 
         }
 
+        static void arrays_lists__dicts()
+        {
+
+            // ARRAYS
+            // ARRAYS are static data. They are NOT lists
+            // {} is used a bit like how [] is used in python
+            // a string is an array of chars
+
+            char[] abc = { 'a', 'b', 'c' };
+
+            int[] numbers = new int[3]; // empty array
+            numbers = new int[] { 3, 2, 1 }; // defined array
+
+            // Sort array
+            Array.Sort(numbers);
+
+            Array.Reverse(numbers);
+
+            int length = numbers.Length; // this returns the int length of the array
+
+            Array.IndexOf(numbers, numbers[0]);
+
+            // LISTS
+            List<int> list = new List<int>() { 1, 2, 3, 4, 5 };  // the value inside the () reserves memory
+
+            int list_length = list.Count();
+
+            list.Remove(list.IndexOf(3)); // this will remove number 3 from the list    
+
+            list.Add(0); // append in python
+
+
+            foreach (int i in list)
+            {
+                // Console.WriteLine(i);
+            }
+
+            // DICTS (this is not a json, it's a dict. Keys cannot be duplicated)
+            int key = 0;
+            int index = 0;
+            string value = "Hello";
+
+            Dictionary<int, string> dict = new Dictionary<int, string>();
+
+            dict.Add(key, value);
+
+
+
+            // dict.ElementAt() get's the index
+            KeyValuePair<int, string> key_value_pair = dict.ElementAt(index); // you can also use var instead of being so explicit
+
+            value = dict[key];
+
+            dict.TryGetValue(key_value_pair.Key, out value);
+        }
+
+        static void welcomeMessage (string message)
+            {
+                Console.WriteLine(message);
+            }
+        
         static void Main(string[] args)
         {
+
+            welcomeMessage("Welcome");
             /*
             int number;
             bool isodd;
@@ -245,59 +304,20 @@ namespace Quickstart_C_
             }
             */
 
+            int num = 7;
+            int length = 5;
 
-            // ARRAYS
-            // ARRAYS are static data. They are NOT lists
-            // {} is used a bit like how [] is used in python
-            // a string is an array of chars
+            int[] arr = new int[length];
 
-            char[] abc = { 'a', 'b', 'c' };
-
-            int[] numbers = new int[3]; // empty array
-            numbers = new int [] { 3, 2, 1 }; // defined array
-                
-            // Sort array
-            Array.Sort(numbers);
-
-            Array.Reverse(numbers);
-
-            int length = numbers.Length; // this returns the int length of the array
-            
-            Array.IndexOf(numbers, numbers[0]);
-
-            // LISTS
-            List<int> list = new List<int>() {1,2,3,4,5 };
-
-            int list_length = list.Count();
-
-            list.Remove(list.IndexOf(3)); // this will remove number 3 from the list    
-
-            list.Add(0); // append in python
-
-
-            foreach (int i in list)
+            for (int i = 0; i < length; i++)
             {
-                
+                arr[i] = num * (i + 1);
             }
 
 
-
-
-            for (int i = 0; i < numbers.Length; i++)
+            foreach (int i in arr)
             {
-                Console.WriteLine("enter a number");
-                numbers[i] = Convert.ToInt32(Console.ReadLine());
-
-            }
-
-            if (numbers.Sum() == 180)
-            {
-                Console.WriteLine("Triangle valid");
-            }
-
-            foreach (int num in numbers)
-            {
-                Console.WriteLine(num);
+                Console.WriteLine(i);
             }
 
 
