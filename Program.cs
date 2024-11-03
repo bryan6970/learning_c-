@@ -112,7 +112,12 @@ namespace Quickstart_C_
 
         }
 
-        static void arrays_lists__dicts()
+        static void test()
+        {
+            arrays_lists_dicts();
+        }
+
+        static void arrays_lists_dicts()
         {
 
             // ARRAYS
@@ -172,11 +177,56 @@ namespace Quickstart_C_
             {
                 Console.WriteLine(message);
             }
-        
+
+        static string getMessage()
+        {
+            return "Welcome";
+        }
+
+
+        static int add(int x, int y)
+        {
+            return x + y;
+        }
+
+        static bool multiplyByTwo(int num, out int output)
+        {
+            output = 0;
+            try
+            {
+                output = Convert.ToInt32 (num);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
+
+        }
+
+        static bool findIndex(string item_to_search, List<string> list , out int index)
+        {
+            index = -1;
+
+            for (int i = 0; i < list.Count(); i++)
+            {
+                if (item_to_search.ToLower().Equals(list[i].ToLower()))
+                {
+                    index = i;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         static void Main(string[] args)
         {
+            // Static means that the function can be used without creating an instance of the parent class. 
+            // Public means that a function can be used outside of the parent clsas
 
-            welcomeMessage("Welcome");
+            welcomeMessage(getMessage());
             /*
             int number;
             bool isodd;
@@ -204,7 +254,7 @@ namespace Quickstart_C_
             }
             */
 
-
+            add(y:1, x:2);  // named params, like send(message="Hi"), becoming send(message:"Hi");
 
             //Console.ReadLine();
 
@@ -304,8 +354,20 @@ namespace Quickstart_C_
             }
             */
 
+
+            List<string> list = new List<string>() {"Hello", "World", "Hello" };
+
+            int index = 0;
+
+            findIndex("World", list, out index);
+
+            Console.WriteLine(index);
+
+
             int num = 7;
             int length = 5;
+
+
 
             int[] arr = new int[length];
 
@@ -315,17 +377,12 @@ namespace Quickstart_C_
             }
 
 
-            foreach (int i in arr)
-            {
-                Console.WriteLine(i);
-            }
-
 
 
 
             Console.ReadLine();
 
-            // continue video at current time. https://youtu.be/YrtFtdTTfv0?t=14578
+            // continue video at current time. https://youtu.be/YrtFtdTTfv0?t=17989
 
         }
     }
