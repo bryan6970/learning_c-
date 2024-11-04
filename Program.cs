@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic; // for lists, dict
+using System.Data;
 using System.Linq;
 
 
@@ -173,10 +174,10 @@ namespace Quickstart_C_
             dict.TryGetValue(key_value_pair.Key, out value);
         }
 
-        static void welcomeMessage (string message)
-            {
-                Console.WriteLine(message);
-            }
+        static void welcomeMessage(string message)
+        {
+            Console.WriteLine(message);
+        }
 
         static string getMessage()
         {
@@ -194,7 +195,7 @@ namespace Quickstart_C_
             output = 0;
             try
             {
-                output = Convert.ToInt32 (num);
+                output = Convert.ToInt32(num);
                 return true;
             }
             catch (Exception)
@@ -202,11 +203,19 @@ namespace Quickstart_C_
 
                 return false;
             }
-            
+
 
         }
 
-        static bool findIndex(string item_to_search, List<string> list , out int index)
+        static void assignHello(ref string name) {
+
+            // you should use ref when you need to read the initial value. Else, use `out`.
+            Console.WriteLine(name);
+
+            name = "Hello";
+        }
+
+        static bool findIndex(string item_to_search, List<string> list, out int index)
         {
             index = -1;
 
@@ -219,6 +228,22 @@ namespace Quickstart_C_
                 }
             }
             return false;
+        }
+
+        static double findTriangleArea(double width, double height)
+        {
+            return width * height / 2;
+        }
+
+        static int findArraySum(int[] arr)
+        {
+            int sum = 0;
+            foreach (var num in arr)
+            {
+                sum += num;
+            }
+
+            return sum;
         }
 
         static void Main(string[] args)
@@ -355,34 +380,26 @@ namespace Quickstart_C_
             */
 
 
-            List<string> list = new List<string>() {"Hello", "World", "Hello" };
-
-            int index = 0;
-
-            findIndex("World", list, out index);
-
-            Console.WriteLine(index);
-
-
-            int num = 7;
-            int length = 5;
-
-
-
-            int[] arr = new int[length];
-
-            for (int i = 0; i < length; i++)
+            try
             {
-                arr[i] = num * (i + 1);
-            }
+                int a;
 
+                int.TryParse("Hello", out a);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine( e.Message);
+            }
+            
+
+       
 
 
 
 
             Console.ReadLine();
 
-            // continue video at current time. https://youtu.be/YrtFtdTTfv0?t=17989
+            // continue video at current time. https://youtu.be/YrtFtdTTfv0?t=20621
 
         }
     }
