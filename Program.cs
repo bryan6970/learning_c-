@@ -246,6 +246,22 @@ namespace Quickstart_C_
             return sum;
         }
 
+        static bool intTryParse(string input, out int result)
+        {
+            result = 0;
+            try
+            {
+                result = int.Parse(input);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+           
+        }
+
         static void Main(string[] args)
         {
             // Static means that the function can be used without creating an instance of the parent class. 
@@ -399,7 +415,7 @@ namespace Quickstart_C_
 
             Console.ReadLine();
 
-            // continue video at current time. https://youtu.be/YrtFtdTTfv0?t=20621
+            // continue video at current time. https://youtu.be/YrtFtdTTfv0?t=23160
 
         }
     }
