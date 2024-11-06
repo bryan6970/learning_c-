@@ -2,6 +2,7 @@
 using System.Collections.Generic; // for lists, dict
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 
 // why does the font here suck
@@ -262,6 +263,69 @@ namespace Quickstart_C_
            
         }
 
+        struct PersonStruct // not really a class. 
+        {
+
+            // define vars first
+            public string name { get; private set;} // getting the var is public (defined by the public keyword), setting the var is private
+            public int age;
+
+
+            
+
+            public PersonStruct(string name, int age=0) // this is a constructor, params are not mandatory. Temporary vars are allowed
+            {
+                this.name = name; 
+                this.age = age;
+            }
+            public PersonStruct(string name, int age , int other) // overloading is allowed
+            {
+                this.name = name;
+                this.age = age;
+
+                if (other != 0)
+                {
+                    Console.WriteLine("Used overloading func");
+                }
+            }
+
+            
+        }
+
+        class PersonClass
+        {
+            public string name;
+            public int age;
+
+            PersonClass(string name , int age=0)
+            {
+                this.name = name;
+                this.age = age;
+                
+            }
+            PersonClass(string name, int age, bool overload = true)
+            {
+                this.name = name;
+                this.age = age;
+
+                if (overload)
+                {
+                    Console.WriteLine($"Overload used in {this.GetType().Name}");
+                }
+            }
+        
+            public string GetName()
+            {
+                return name; // name is local to the class
+            }
+
+            public int GetAge()
+            {
+                GetName();
+                return age;
+            }
+        }
+
         static void Main(string[] args)
         {
             // Static means that the function can be used without creating an instance of the parent class. 
@@ -395,20 +459,12 @@ namespace Quickstart_C_
             }
             */
 
+            PersonStruct me = new PersonStruct();
 
-            try
-            {
-                int a;
+            Console.WriteLine($"I am {me.name} and my age is {me.age}");
 
-                int.TryParse("Hello", out a);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine( e.Message);
-            }
-            
 
-       
+
 
 
 
