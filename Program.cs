@@ -267,7 +267,10 @@ namespace Quickstart_C_
         {
 
             // define vars first
-            public string name { get; private set;} // getting the var is public (defined by the public keyword), setting the var is private
+            public string Name { get; private set;} // getting the var is public (defined by the public keyword), setting the var is private
+            // This is a property, as it it meant to be accessed outside the class
+            // in PersonClass, we see a field, which is meant to be accessed only inside the class
+
             public int age;
 
 
@@ -275,12 +278,12 @@ namespace Quickstart_C_
 
             public PersonStruct(string name, int age=0) // this is a constructor, params are not mandatory. Temporary vars are allowed
             {
-                this.name = name; 
+                this.Name = name; 
                 this.age = age;
             }
             public PersonStruct(string name, int age , int other) // overloading is allowed
             {
-                this.name = name;
+                this.Name = name;
                 this.age = age;
 
                 if (other != 0)
@@ -294,16 +297,32 @@ namespace Quickstart_C_
 
         class PersonClass
         {
-            public string name;
+            public string name { get; private set;}
             public int age;
+            private string id = "123"; // this is a field, private and only to be accessed within the class
 
-            PersonClass(string name , int age=0)
+            public string class_number { 
+                get {
+                    return class_number; 
+                }
+                set {   
+                    // value is implicit here
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        throw new ArgumentNullException(nameof(value),$"The provided value of {nameof(class_number)} cannot be null");
+                    }
+
+                    class_number = value;
+                }
+            }
+
+            public PersonClass(string name , int age=0)
             {
                 this.name = name;
                 this.age = age;
                 
             }
-            PersonClass(string name, int age, bool overload = true)
+            public PersonClass(string name, int age, bool overload = true)
             {
                 this.name = name;
                 this.age = age;
@@ -314,16 +333,33 @@ namespace Quickstart_C_
                 }
             }
         
-            public string GetName()
+               
+            public string SetName(int id)
             {
+                if (string.IsNullOrEmpty(name))
+                {
+                    throw new ArgumentNullException("name");
+                }
+                
+
                 return name; // name is local to the class
             }
 
-            public int GetAge()
+            public void ScopeExample1()
             {
-                GetName();
-                return age;
+                // name here will mean this.name
+                Console.Write($"The value {nameof(id)} is {id}, and the value of {nameof(this.id)} is {this.id}");
+
             }
+
+            public void ScopeExample2()
+            {
+                // however, local vars overide global vars
+                // in this case, you have to use this.id    
+                string id = "Local var present";
+                Console.Write($"The value {nameof(id)} is {id}, and the value of {nameof(this.id)} is {this.id}");
+            }
+
         }
 
         static void Main(string[] args)
@@ -359,7 +395,7 @@ namespace Quickstart_C_
             }
             */
 
-            add(y:1, x:2);  // named params, like send(message="Hi"), becoming send(message:"Hi");
+            // add(y:1, x:2);  // named params, like send(message="Hi"), becoming send(message:"Hi");
 
             //Console.ReadLine();
 
@@ -461,17 +497,23 @@ namespace Quickstart_C_
 
             PersonStruct me = new PersonStruct();
 
-            Console.WriteLine($"I am {me.name} and my age is {me.age}");
+            Console.WriteLine($"I am {me.Name} and my age is {me.age}");
 
 
+            PersonClass myclass = new PersonClass(name:"Me", age:15 );
 
+            myclass.class_number = "";
+
+            string myname = myclass.name;
+
+            
 
 
 
 
             Console.ReadLine();
 
-            // continue video at current time. https://youtu.be/YrtFtdTTfv0?t=23160
+            // continue video at current time. https://youtu.be/YrtFtdTTfv0?t=28869
 
         }
     }
