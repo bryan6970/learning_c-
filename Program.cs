@@ -297,35 +297,40 @@ namespace Quickstart_C_
 
         class PersonClass
         {
-            public string name { get; private set;}
-            public int age;
-            private string id = "123"; // this is a field, private and only to be accessed within the class
+            // By convention, PascalCase is used for public vars, and camelCase is used for private vars. snake_case is never used.
+            private string _id = "123"; // this is a field, private and only to be accessed within the class
+            private string _classNumber;
 
-            public string class_number { 
+
+            public string Name;
+            public int Age;
+
+
+            public string ClassNumber { 
                 get {
-                    return class_number; 
+                    return _classNumber; 
                 }
                 set {   
-                    // value is implicit here
+                    // value is implicit here, with the same type as in `public string ClassNumber`
                     if (string.IsNullOrEmpty(value))
                     {
-                        throw new ArgumentNullException(nameof(value),$"The provided value of {nameof(class_number)} cannot be null");
+                        throw new ArgumentNullException(nameof(value),$"The provided value of {nameof(_classNumber)} cannot be null");
                     }
 
-                    class_number = value;
+                    _classNumber = value;
                 }
             }
 
             public PersonClass(string name , int age=0)
             {
-                this.name = name;
-                this.age = age;
+                this.Name = name;
+                this.Age = age;
                 
             }
             public PersonClass(string name, int age, bool overload = true)
             {
-                this.name = name;
-                this.age = age;
+                this.Name = name;
+                this.Age = age;
 
                 if (overload)
                 {
@@ -334,21 +339,10 @@ namespace Quickstart_C_
             }
         
                
-            public string SetName(int id)
-            {
-                if (string.IsNullOrEmpty(name))
-                {
-                    throw new ArgumentNullException("name");
-                }
-                
-
-                return name; // name is local to the class
-            }
-
             public void ScopeExample1()
             {
                 // name here will mean this.name
-                Console.Write($"The value {nameof(id)} is {id}, and the value of {nameof(this.id)} is {this.id}");
+                Console.Write($"The value {nameof(_id)} is {_id}, and the value of {nameof(this._id)} is {this._id}");
 
             }
 
@@ -357,13 +351,36 @@ namespace Quickstart_C_
                 // however, local vars overide global vars
                 // in this case, you have to use this.id    
                 string id = "Local var present";
-                Console.Write($"The value {nameof(id)} is {id}, and the value of {nameof(this.id)} is {this.id}");
+                Console.Write($"The value {nameof(id)} is {id}, and the value of {nameof(this._id)} is {this._id}");
             }
 
+            public override string ToString() // This allows you to print the class to the string in a nice way
+            {
+                // You can add the logic of what to print out here
+
+                // base keyword here refers to the curent object, like self, but up the inheritance ladder. 
+                // You can ignore this for now
+                return base.ToString();
+            }
+
+            public override bool Equals(object obj) // obj here is just a generic object
+            {
+                
+                if (!(obj is PersonClass))
+                {
+                    return false;
+                }
+                // We need to let the compiler know a that the object is more specific, using casting
+                PersonClass person = obj as PersonClass;
+                    
+
+                return Name.Equals(person.Name);
+            }
         }
 
         static void Main(string[] args)
         {
+            
             // Static means that the function can be used without creating an instance of the parent class. 
             // Public means that a function can be used outside of the parent clsas
 
@@ -495,6 +512,7 @@ namespace Quickstart_C_
             }
             */
 
+            
             PersonStruct me = new PersonStruct();
 
             Console.WriteLine($"I am {me.Name} and my age is {me.age}");
@@ -502,12 +520,12 @@ namespace Quickstart_C_
 
             PersonClass myclass = new PersonClass(name:"Me", age:15 );
 
-            myclass.class_number = "";
+            //myclass.class_number = "";
 
-            string myname = myclass.name;
+            //string myname = myclass.name;
 
-            
 
+            Console.WriteLine(myclass);
 
 
 
